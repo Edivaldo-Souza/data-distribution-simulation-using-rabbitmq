@@ -30,7 +30,7 @@ public class AgenteMonitoramentoServidor1 {
             while (true) {
                 mensagem.setCpu_usage(random.nextInt(0, 100));
                 mensagem.setMemory_usage(random.nextInt(0, 100));
-                mensagem.setResponse_time(random.nextInt(500));
+                mensagem.setResponse_time(random.nextInt(10000));
                 mensagem.setServer("Servidor 1");
                 mensagem.setService("Banco de Dados");
                 mensagem.setStatus(getStatus(
@@ -68,10 +68,10 @@ public class AgenteMonitoramentoServidor1 {
         if(cpu<30 || memory<30 || response_time<50){
             status = "azul";
         }
-        if((cpu>75 && memory>75) || response_time>7000){
+        if((cpu>75 && memory>50) || response_time>7000){
             status = "amarelo";
         }
-        if((cpu>90 && memory>90) && response_time>9000){
+        if((cpu>75 || memory>60) && response_time>8000){
             status = "vermelho";
         }
         return status;

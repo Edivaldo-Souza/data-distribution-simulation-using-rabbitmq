@@ -30,7 +30,7 @@ public class SistemaManutencao {
 
           System.out.println("Ação necessário no "+service+" do servidor "+server+".\n"+
                   "Motivo: "+ cause + ",\n"+
-                  "Recomendação: "+ solution);
+                  "Recomendação: "+ solution + "\n");
         };
 
         channel.basicConsume(FILA_ORDEM_DE_SERVICOS, true, deliverCallback, consumerTag -> {});

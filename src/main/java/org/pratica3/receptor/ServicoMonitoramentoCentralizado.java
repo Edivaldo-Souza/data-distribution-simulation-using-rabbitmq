@@ -41,6 +41,7 @@ public class ServicoMonitoramentoCentralizado {
                 String server = message.split(",")[3].split("=")[1];
                 String service = message.split(",")[1].split("=")[1];
                 String cpu_usage = message.split(",")[4].split("=")[1];
+                String response_time = message.split(",")[6].split("=")[1].split("}")[0];
 
                 OrdemDeServico ordem = new OrdemDeServico();
                 if(status.equals("amarelo")) {
@@ -49,9 +50,9 @@ public class ServicoMonitoramentoCentralizado {
                     ordem.setServer(server);
                     ordem.setStatus(status);
                     ordem.setService(service);
-                    ordem.setProblem("Tempo de resposta está alto");
+                    ordem.setProblem("Tempo de resposta está alto: "+response_time+ " milisegundos");
                     ordem.setAction_required("Finalize alguns processos em segundo plano");
-                    System.out.println("Mensagem: " + ordem.toString());
+                    System.out.println("[x] Enviando: " + ordem.toString());
                     channel.basicPublish("",
                             FILA_ORDEM_DE_SERVICOS,
                             null,
@@ -64,9 +65,10 @@ public class ServicoMonitoramentoCentralizado {
                     ordem.setStatus(status);
                     ordem.setService(service);
 
-                    ordem.setProblem("Processador com "+cpu_usage+"% de utilização");
+                    ordem.setProblem("Processador com "+cpu_usage+"% de utilização " +
+                            "\ne tempo de resposta: "+response_time+" milisegundos");
                     ordem.setAction_required("Verifique e reinicie o serviço");
-                    System.out.println("Mensagem: " + ordem.toString());
+                    System.out.println("[x] Enviando: " + ordem.toString());
                     channel.basicPublish("",
                             FILA_ORDEM_DE_SERVICOS,
                             null,

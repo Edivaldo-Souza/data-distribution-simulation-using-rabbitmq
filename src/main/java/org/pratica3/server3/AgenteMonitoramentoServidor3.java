@@ -32,7 +32,7 @@ public class AgenteMonitoramentoServidor3 {
             while(true){
                 mensagem.setCpu_usage(random.nextInt(0,100));
                 mensagem.setMemory_usage(random.nextInt(0,100));
-                mensagem.setResponse_time(random.nextInt(500));
+                mensagem.setResponse_time(random.nextInt(10000));
                 mensagem.setServer("Servidor 3");
                 mensagem.setService("Banco de Dados");
                 mensagem.setStatus(getStatus(
@@ -47,7 +47,7 @@ public class AgenteMonitoramentoServidor3 {
 
                 mensagem.setCpu_usage(random.nextInt(0,100));
                 mensagem.setMemory_usage(random.nextInt(0,100));
-                mensagem.setResponse_time(random.nextInt(500));
+                mensagem.setResponse_time(random.nextInt(10000));
                 mensagem.setServer("Servidor 3");
                 mensagem.setService("Servidor Web");
                 mensagem.setStatus(getStatus(
